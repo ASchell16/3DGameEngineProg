@@ -22,14 +22,55 @@ namespace Engine.Base
         public GameObject Parent { get; set; }
         public List<GameObject> Children { get; set; }
 
-        private List<Component> commponents = new List<Component>();
-        public List<Component> Components { get { return commponents; } }
+        private List<Component> components = new List<Component>();
+        public List<Component> Components { get { return components; } }
 
         private List<string> awaitingRemoval = new List<string>();
 
         private bool isInitialized = false;
         public bool IsInitialized  { get { return IsInitialized; } }
 
+
+
+        public virtual void Initialize()
+        {
+            foreach (var init in components)
+            {
+                init.Enabled = true;
+            }
+        }
+
+        public GameObject()
+        {
+            ID = this.GetType().Name + Guid.NewGuid();
+            Enabled = true;
+            World = Matrix.Identity;
+            Children = new List<GameObject>();
+
+        }
+        public GameObject(Vector3 location)
+        {
+            ID = this.GetType().Name + Guid.NewGuid();
+            Enabled = true;
+            World = Matrix.Identity * Matrix.CreateTranslation(location);
+            Children = new List<GameObject>();
+        }
+        public void AddComponent(Component newComponent)
+        {
+            newComponent.Owner = this;
+
+            if (IsInitialized)
+                newComponent.Initialize();
+
+            newComponent.OnDestroy += NewComponent_OnDestroy;
+            components.Add(newComponent);
+
+        }
+
+        private void NewComponent_OnDestroy(string ID)
+        {
+            throw new NotImplementedException();
+        }
 
 
     }
