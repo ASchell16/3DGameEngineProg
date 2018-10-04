@@ -36,8 +36,11 @@ namespace Engine.Base
         {
             foreach (var init in components)
             {
+                init.Initialize();
                 init.Enabled = true;
             }
+
+            isInitialized = true;
         }
 
         public GameObject()
@@ -69,9 +72,12 @@ namespace Engine.Base
 
         private void NewComponent_OnDestroy(string ID)
         {
+            awaitingRemoval.Add(ID);
             throw new NotImplementedException();
         }
 
+        
+      
 
     }
 }
