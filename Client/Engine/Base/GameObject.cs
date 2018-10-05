@@ -76,7 +76,10 @@ namespace Engine.Base
             throw new NotImplementedException();
         }
 
-        
+        private void Component_OnDestroy(string id)
+        {
+            awaitingRemoval.Add(id);
+        }        
       
 
     }
