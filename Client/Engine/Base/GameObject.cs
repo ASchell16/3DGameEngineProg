@@ -79,8 +79,57 @@ namespace Engine.Base
         private void Component_OnDestroy(string id)
         {
             awaitingRemoval.Add(id);
-        }        
-      
+        }    
+
+        public void RemoveComponent(Component component)
+        {
+            components.Remove(component);
+        }
+        public void Destroy()
+        {
+            components.Clear();
+            if (OnDestroy != null)
+                OnDestroy(ID);
+        }
+        public Component GetComponent(string id)
+        {
+            return components.Find(c => c.ID == id);
+        }
+        public Component GetComponent(Type componentType)
+        {
+            return components.Find(c => c.GetType() == componentType);
+        }
+
+        //--------------------------------------------------------------------------------
+        public void RemoveComponent(int index)
+        {
+            components.Remove();    
+        }
+        public void RemoveComponent(string id)
+        {
+            components.Remove();
+        }
+        public float GetDistanceTo(GameObject otherObject)
+        {
+
+        }
+
+        public void Draw(CameraComponent camera)
+        {
+
+        }
+
+        public bool HasComponent<T>()
+        {
+
+        }
+
+        public void Update(float delta)
+        {
+
+        }
+
+        public 
 
     }
 }
