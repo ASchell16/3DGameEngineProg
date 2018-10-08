@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Engine.Base;
 
 namespace Engine.Base
 {
@@ -103,11 +104,11 @@ namespace Engine.Base
         //--------------------------------------------------------------------------------
         public void RemoveComponent(int index)
         {
-            components.Remove();    
+            components.RemoveAt(index);    
         }
         public void RemoveComponent(string id)
         {
-            components.Remove();
+     
         }
         public float GetDistanceTo(GameObject otherObject)
         {
@@ -116,7 +117,13 @@ namespace Engine.Base
 
         public void Draw(CameraComponent camera)
         {
-
+            foreach (var rc in components)
+            {
+                if (rc.Enabled)
+                {
+                    
+                }                   
+            }
         }
 
         public bool HasComponent<T>()
@@ -124,12 +131,28 @@ namespace Engine.Base
 
         }
 
-        public void Update(float delta)
+        public virtual void Update(float delta)
+        {
+            foreach (var component in Components)
+            {
+
+            }
+        }
+
+        public List<Component> GetComponents(Type componentType)
         {
 
         }
 
-        public 
+        public T GetComponent<t>()
+        {
 
+        }
+
+        public List<T> GetComponents<T>()
+        {
+
+        }
+        
     }
 }
