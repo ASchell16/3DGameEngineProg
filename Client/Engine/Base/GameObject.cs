@@ -11,23 +11,18 @@ namespace Engine.Base
     public abstract class GameObject
     {
         public string ID { get; set; }
+        public Scene Scene { get; set; }
         public bool Enabled { get; set; }
-
         public event ObjectIDHandler OnDestroy;
-
         public Matrix World { get; set; }
         public Vector3 Location { get { return World.Translation; } }
         public Vector3 Scale { get { return World.Scale; } }
         public Quaternion Rotation { get { return World.Rotation; } }
-
         public GameObject Parent { get; set; }
         public List<GameObject> Children { get; set; }
-
         private List<Component> components = new List<Component>();
         public List<Component> Components { get { return components; } }
-
         private List<string> awaitingRemoval = new List<string>();
-
         private bool isInitialized = false;
         public bool IsInitialized  { get { return IsInitialized; } }
 
@@ -108,11 +103,11 @@ namespace Engine.Base
         }
         public void RemoveComponent(string id)
         {
-     
+            components.RemoveAll(id);
         }
         public float GetDistanceTo(GameObject otherObject)
         {
-
+            
         }
 
         public void Draw(CameraComponent camera)
@@ -131,7 +126,7 @@ namespace Engine.Base
 
         }
 
-        public virtual void Update(float delta)
+        public virtual void Update()
         {
             foreach (var component in Components)
             {
@@ -144,7 +139,7 @@ namespace Engine.Base
 
         }
 
-        public T GetComponent<t>()
+        public T GetComponent<T>()
         {
 
         }
