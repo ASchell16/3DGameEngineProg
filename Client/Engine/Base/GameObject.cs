@@ -96,18 +96,29 @@ namespace Engine.Base
             return components.Find(c => c.GetType() == componentType);
         }
 
-        //--------------------------------------------------------------------------------
-        public void RemoveComponent(int index)
+         public void RemoveComponent(int index)
         {
             components.RemoveAt(index);    
         }
         public void RemoveComponent(string id)
         {
-            components.RemoveAll(id);
+            components.RemoveAll(go => go.ID == id);
         }
-        public float GetDistanceTo(GameObject otherObject)
+        public virtual void Update()
         {
-            
+            foreach (var component in Components)
+            {
+                component.Update();
+            }
+            foreach (var R in awaitingRemoval)
+            {
+                RemoveComponent(R);
+            }
+        }
+        //--------------------------------------------------------------------------------
+       public float GetDistanceTo(GameObject otherObject)
+        {
+            return GetDistanceTo(otherObject); 
         }
 
         public void Draw(CameraComponent camera)
@@ -116,37 +127,33 @@ namespace Engine.Base
             {
                 if (rc.Enabled)
                 {
-                    
+                    Draw(camera);
                 }                   
             }
         }
 
         public bool HasComponent<T>()
         {
-
+            return components.Exists(go => go.GetType() == typeof(T));
         }
 
-        public virtual void Update()
-        {
-            foreach (var component in Components)
-            {
-
-            }
-        }
+        
 
         public List<Component> GetComponents(Type componentType)
         {
-
+            return components.FindAll(go => go.GetType() == componentType);
         }
 
-        public T GetComponent<T>()
+        public T GetComponent<T>() 
         {
-
+            return components.OfType<T>().First();             
         }
 
+        // return a list of components with matching type
         public List<T> GetComponents<T>()
         {
-
+            return components.OfType<T>().ToList();
+         
         }
         
     }

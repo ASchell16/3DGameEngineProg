@@ -13,6 +13,7 @@ namespace Engine.Base
 
         public List<string> awatingRemoval = new List<string>();
         protected bool isInitialized = false;
+
         public Scene() { }
 
         public void AddObject(GameObject newObject)
@@ -25,7 +26,10 @@ namespace Engine.Base
             newObject.OnDestroy += NewObject_OnDestroy;
             gameObjects.Add(newObject);
         }
-        private void NewObject_OnDestroy(string id) { }
+        private void NewObject_OnDestroy(string id)
+        {
+            awatingRemoval.Add(id);
+        }
         public virtual void Initialize()
         {
             foreach (var objects in gameObjects)
@@ -71,41 +75,53 @@ namespace Engine.Base
         }
         public int GetObjectIndexInPool(string objectID)
         {
-            if (gameObjects.Exists(p => p.ID == objectID))
-            {
-                return gameObjects.FindIndex(p => p.ID == objectID);
-            }
-            else
-            {
-                return -1;
-            }
-        }
-        //public GameObject GetObject(string objectID)
-        //{ 
+            int index = -1;
 
-        //    return gameObjects.Find(go => go.ID == objectID);
-        //}
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                if (gameObjects[i].ID == objectID)
+                {
+                    return gameObjects.FindIndex(p => p.ID == objectID);
+                }
+
+            }
+            return index;
+                
+            
+        }
+        public GameObject GetObject(string objectid)
+        {
+
+            return gameObjects.Find(go => go.ID == objectid);
+        }
         public GameObject GetObject<T>()
         {
             return gameObjects.Find(go => go.GetType() == typeof(T));
         }
-
-
         public List<GameObject> GetGameObjects<T>()
         {
             return gameObjects.FindAll(go=> go.GetType() == typeof(T));
+        }       
+        public void RemoveObject(string objectID)
+        {
+            int index = GetObjectIndexInPool(objectID);
+            if (index != -1)
+            {
+                gameObjects.RemoveAt(index);
+            }
         }
-       
-        public void RemoveObject(string objectID) { }
-        //public T GetComponentInObject<T>(string objectID)
-        //{
-        //    gameObjects.Exists(go => go.ID == objectID);
-        //    if(gameObjects.Find(go => go.GetComponent() == typeof(T)))
-        //        return
+        public T GetComponentInObject<T>(string objectID) where T: Component
+        {
+            var gameObject = gameObjects.FirstOrDefault(go => go.ID == objectID);
 
-        //}     
-        
-       
+            if (gameObject != null)
+               return gameObject.GetComponent<T>();
+
+            else return null;
+
+        }
+
+
 
     }
 }
