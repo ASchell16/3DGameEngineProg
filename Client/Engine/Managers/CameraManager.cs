@@ -10,17 +10,28 @@ namespace Engine.Managers
 {
     public sealed class CameraManager : GameComponent
     {
-        private static Dictionary<string, CameraComponent> Cameras;
+        private static Dictionary<string, CameraComponent> Cameras = new Dictionary<string, CameraComponent>();
         private static CameraComponent activeCamera;
         public static CameraComponent ActiveCamera { get { return activeCamera; } }
         public CameraManager(Game game) : base(game)
         {
             game.Components.Add(this);
         }
+
         public static void SetActiveCamera(string id)
         {
-            // compares id being passed and id of active camera
-            if (activeCamera.ID != id)
+            if (activeCamera != null)
+            {
+                // compares id being passed and id of active camera
+                if (activeCamera.ID != id)
+                {
+                    if (Cameras.ContainsKey(id))
+                    {
+                        activeCamera = Cameras[id];
+                    }
+                }
+            }
+            else
             {
                 if (Cameras.ContainsKey(id))
                 {
@@ -28,24 +39,26 @@ namespace Engine.Managers
                 }
             }
 
-            
+
         }
         public static void AddCamera(CameraComponent camera)
         {
             // if no camera exists add camera component
-            if (!Cameras.ContainsValue(camera))
+            if (!Cameras.ContainsKey(camera.ID))
             {
                 Cameras.Add(camera.ID, camera);
-                
+                if (Cameras.Count == 1)
+                    SetActiveCamera(camera.ID);
             }
 
             // if newly added camera is only camera set as active camera
-            if (Cameras.ContainsValue(camera))
+            if (Cameras.ContainsKey(camera.ID))
             {
                 camera.Enabled = true;
-            } 
-            
-        }
+            }
+
+        }        
+       
         public static void Clear()
         {
             Cameras.Clear();

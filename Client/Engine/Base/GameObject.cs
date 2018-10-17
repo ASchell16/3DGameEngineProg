@@ -24,7 +24,7 @@ namespace Engine.Base
         public List<Component> Components { get { return components; } }
         private List<string> awaitingRemoval = new List<string>();
         private bool isInitialized = false;
-        public bool IsInitialized  { get { return IsInitialized; } }
+        public bool IsInitialized  { get { return isInitialized; } }
 
 
 
@@ -38,7 +38,6 @@ namespace Engine.Base
 
             isInitialized = true;
         }
-
         public GameObject()
         {
             ID = this.GetType().Name + Guid.NewGuid();
@@ -65,18 +64,15 @@ namespace Engine.Base
             components.Add(newComponent);
 
         }
-
         private void NewComponent_OnDestroy(string ID)
         {
             awaitingRemoval.Add(ID);
             throw new NotImplementedException();
         }
-
         private void Component_OnDestroy(string id)
         {
             awaitingRemoval.Add(id);
         }    
-
         public void RemoveComponent(Component component)
         {
             components.Remove(component);
@@ -95,8 +91,7 @@ namespace Engine.Base
         {
             return components.Find(c => c.GetType() == componentType);
         }
-
-         public void RemoveComponent(int index)
+        public void RemoveComponent(int index)
         {
             components.RemoveAt(index);    
         }
@@ -106,50 +101,41 @@ namespace Engine.Base
         }
         public virtual void Update()
         {
-            foreach (var component in Components)
+            foreach (Component c in Components)
             {
-                component.Update();
+                c.Update();
             }
             foreach (var R in awaitingRemoval)
             {
                 RemoveComponent(R);
             }
-        }
-        //--------------------------------------------------------------------------------
-       public float GetDistanceTo(GameObject otherObject)
+        }       
+        public float GetDistanceTo(GameObject otherObject)
         {
             return GetDistanceTo(otherObject); 
         }
-
         public void Draw(CameraComponent camera)
         {
-            foreach (var rc in components)
+            foreach (var rc in components.OfType<RenderComponent>())
             {
                 if (rc.Enabled)
                 {
-                    Draw(camera);
+                    rc.Draw(camera);
                 }                   
             }
         }
-
         public bool HasComponent<T>()
         {
             return components.Exists(go => go.GetType() == typeof(T));
-        }
-
-        
-
+        }       
         public List<Component> GetComponents(Type componentType)
         {
             return components.FindAll(go => go.GetType() == componentType);
         }
-
         public T GetComponent<T>() 
         {
             return components.OfType<T>().First();             
         }
-
-        // return a list of components with matching type
         public List<T> GetComponents<T>()
         {
             return components.OfType<T>().ToList();

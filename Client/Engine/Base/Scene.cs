@@ -42,10 +42,10 @@ namespace Engine.Base
         }
         public virtual void Update()
         {
-            foreach (var s in gameObjects)
+            foreach (GameObject go in gameObjects)
             {
-               if(s.Enabled)
-                  s.Update();
+               if(go.Enabled)
+                  go.Update();
             }
 
             foreach (var g in awatingRemoval)
@@ -120,8 +120,6 @@ namespace Engine.Base
             else return null;
 
         }
-
-
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Engine;
+﻿using Client.Scenes;
+using Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,8 +18,12 @@ namespace Client
         
         public Game1()
         {
+
           
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.ApplyChanges();
             Content.RootDirectory = "Content";
             engine = new GameEngine(this);
         }
@@ -26,7 +31,12 @@ namespace Client
        
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+
+            GameUtilities.Content = Content;
+            GameUtilities.SceneConetent = Content;
+            GameUtilities.GraphicsDevice = GraphicsDevice;
+
+            engine.LoadScene(new SimpleScene());
 
             base.Initialize();
         }
@@ -46,26 +56,22 @@ namespace Client
             // TODO: Unload any non ContentManager content here
         }
 
-        
+
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
-
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            
 
             base.Draw(gameTime);
         }

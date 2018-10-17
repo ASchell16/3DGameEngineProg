@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/s00190272/source/repos/3DGameEngineProgramming/3DGameEngineProgramming/Content/uv_texture.png</SourceFile>
-  <SourceTime>2018-09-17T09:17:24.2622474+01:00</SourceTime>
-  <DestFile>C:/Users/s00190272/source/repos/3DGameEngineProgramming/3DGameEngineProgramming/Content/bin/Windows/uv_texture.xnb</DestFile>
-  <DestTime>2018-09-17T10:01:01.0680472+01:00</DestTime>
+  <SourceFile>C:/Users/s00190272/Documents/GitHub/3DGameEngineProg/3DGameEngineProgramming/3DGameEngineProgramming/Content/uv_texture.png</SourceFile>
+  <SourceTime>2018-10-04T14:29:53.812495+01:00</SourceTime>
+  <DestFile>C:/Users/s00190272/Documents/GitHub/3DGameEngineProg/3DGameEngineProgramming/3DGameEngineProgramming/Content/bin/Windows/uv_texture.xnb</DestFile>
+  <DestTime>2018-10-17T17:37:47.4234995+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T15:05:36+00:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

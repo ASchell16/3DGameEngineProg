@@ -22,6 +22,7 @@ namespace Engine
         public GameEngine(Game game) : base(game)
         {
             game.Components.Add(this);
+
             input = new InputManager(game);
             camera = new CameraManager(game);
             physics = new PhysicsManager(game);
@@ -58,6 +59,10 @@ namespace Engine
         }
         public override void Draw(GameTime gameTime)
         {
+            if(activeScene != null && CameraManager.ActiveCamera != null)
+            {
+                activeScene.Draw(CameraManager.ActiveCamera);
+            }
             base.Draw(gameTime);
         }
 

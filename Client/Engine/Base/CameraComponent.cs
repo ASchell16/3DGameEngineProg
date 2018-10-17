@@ -19,8 +19,14 @@ namespace Engine.Base
         public Vector3 CameraDirection { get; set; }
         public Vector3 Upvector { get; set; }
 
-        public CameraComponent(string id) : base(id) { }
-        public CameraComponent() : base() { }
+        public CameraComponent(string id) : base(id)
+        {
+
+        }
+        public CameraComponent() : base()
+        {
+
+        }
 
         public override void Initialize()
         {
