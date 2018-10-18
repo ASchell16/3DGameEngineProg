@@ -15,8 +15,6 @@ namespace Client.GameObjects
         public Waypoint(Vector3 location) : base(location)
         {
             this.location = location;
-
-
         }
     }
 }
