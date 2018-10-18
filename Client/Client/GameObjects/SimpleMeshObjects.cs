@@ -1,4 +1,5 @@
 ﻿using Engine.Base;
+using Client.Scripts;
 using Engine.Components.Graphics;
 using Microsoft.Xna.Framework;
 using System;
@@ -20,7 +21,12 @@ namespace Client.GameObjects
 
         public override void Initialize()
         {
+            List<Vector3> locations = new List<Vector3>();
+            locations.Add(new Vector3(0, 10, 0));
+            locations.Add(new Vector3(0, -10, 0));
+
             AddComponent(new BasicEffectModel(asset));
+            AddComponent(new WaypointFollowScript(new List<Vector3>(locations)));
 
             base.Initialize();
         }

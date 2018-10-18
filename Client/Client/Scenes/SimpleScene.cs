@@ -18,7 +18,7 @@ namespace Client.Scenes
 
         public override void Initialize()
         {
-            AddObject(new SimplePlayerObject(new Vector3(0, 0, 10)));
+            AddObject(new SimplePlayerObject("cube", new Vector3(0, 0, 10)));
             AddObject(new SimpleMeshObjects("cube", new Vector3(0, 0, -10)));
             AddObject(new SimpleMeshObjects("plane", new Vector3(0, -2, 0)));
 

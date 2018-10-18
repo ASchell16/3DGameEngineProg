@@ -28,21 +28,37 @@ namespace Engine.Components.Input
 
             if (InputManager.IsKeyHeld(Keys.W))
             {
-              Owner.World *= Matrix.CreateTranslation(0, 0, MovementSpeed * GameUtilities.DeltaTime );
+              Owner.World *= Matrix.CreateTranslation(0, 0, -MovementSpeed * 
+                             GameUtilities.DeltaTime );
             }
             if (InputManager.IsKeyHeld(Keys.S))
             {
-                Owner.World *= Matrix.CreateTranslation(0, 0, -MovementSpeed * GameUtilities.DeltaTime);
+                Owner.World *= Matrix.CreateTranslation(0, 0, MovementSpeed * 
+                               GameUtilities.DeltaTime);
             }
             if (InputManager.IsKeyHeld(Keys.A))
             {
-                Owner.World *= Matrix.CreateTranslation(-MovementSpeed * GameUtilities.DeltaTime, 0, 0);
+                Owner.World *= Matrix.CreateTranslation(-MovementSpeed * 
+                               GameUtilities.DeltaTime, 0, 0);
             }
             if (InputManager.IsKeyHeld(Keys.D))
             {
-                Owner.World *= Matrix.CreateTranslation(MovementSpeed * GameUtilities.DeltaTime, 0, 0);
+                Owner.World *= Matrix.CreateTranslation(MovementSpeed *
+                               GameUtilities.DeltaTime, 0, 0);
+            }
+            if (InputManager.IsKeyHeld(Keys.Up))
+            {
+                Owner.World *= 
+                               Matrix.CreateTranslation(0, MovementSpeed *
+                               GameUtilities.DeltaTime, 0);
+            }
+            if (InputManager.IsKeyHeld(Keys.Down))
+            {
+                Owner.World *= Matrix.CreateTranslation(0, -MovementSpeed *
+                                GameUtilities.DeltaTime, 0);
             }
 
+           
             base.Update();
         }
     }
