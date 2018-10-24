@@ -38,6 +38,11 @@ namespace Engine.Base
 
             isInitialized = true;
         }
+        public virtual void PostInitialize()
+        {
+            foreach (var c in components)
+                c.PostInitialize();
+        }
         public GameObject()
         {
             ID = this.GetType().Name + Guid.NewGuid();
@@ -141,6 +146,7 @@ namespace Engine.Base
             return components.OfType<T>().ToList();
          
         }
+
         
     }
 }

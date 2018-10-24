@@ -15,6 +15,7 @@ namespace Engine
         CameraManager camera;
         FrameRateCounter fpsCounter;
         PhysicsManager physics;
+        DebugManager debug;
 
         private Scene activeScene;
         public Scene ActiveScene {get { return activeScene; } }
@@ -27,8 +28,13 @@ namespace Engine
             camera = new CameraManager(game);
             physics = new PhysicsManager(game);
             fpsCounter = new FrameRateCounter(game);
+            debug = new DebugManager();
         }
-
+        public override void Initialize()
+        {
+            debug.Initialize();
+            base.Initialize();
+        }
         public void LoadScene(Scene newScene)
         {
             if (newScene != null)
@@ -61,7 +67,11 @@ namespace Engine
         {
             if(activeScene != null && CameraManager.ActiveCamera != null)
             {
-                activeScene.Draw(CameraManager.ActiveCamera);
+                if (CameraManager.ActiveCamera != null)
+                {
+                    activeScene.Draw(CameraManager.ActiveCamera);
+                    debug.Draw(CameraManager.ActiveCamera);
+                }
             }
             base.Draw(gameTime);
         }

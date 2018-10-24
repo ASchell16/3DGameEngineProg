@@ -21,7 +21,7 @@ namespace Client.GameObjects
 
         public override void Initialize()
         {
-            AddComponent(new FixedCamera(new Vector3(0, 0, -1)));
+            AddComponent(new FixedCamera(new Vector3(0, 0, -1), 1, 1000));
             AddComponent(new PlayerMovementController(10));         
             
             base.Initialize();

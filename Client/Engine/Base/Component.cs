@@ -30,5 +30,7 @@ namespace Engine.Base
                 OnDestroy(ID);
         }
 
+        public virtual void PostInitialize() { }
+
     }
 }

@@ -12,15 +12,17 @@ namespace Engine.Components.Cameras
 {
     public class FixedCamera : CameraComponent
     {
-        public FixedCamera(Vector3 direction) : base()
+        public FixedCamera(Vector3 direction, float nearPlane, float farPlane) : base()
         {
             CameraDirection = direction;
+            NearPlane = nearPlane;
+            FarPlane = farPlane;
+
         }
 
         public override void Initialize()
         {
-            NearPlane = 1.0f;
-            FarPlane = 10000.0f;
+            
             Upvector = Vector3.Up;
             CameraDirection.Normalize();
 
