@@ -22,12 +22,21 @@ namespace Client.GameObjects
         public override void Initialize()
         {
             List<Vector3> locations = new List<Vector3>();
-            locations.Add(new Vector3(0, 10, 0));
-            locations.Add(new Vector3(0, -10, 0));
+            locations.Add(new Vector3(-3, 0, 0));
+            locations.Add(new Vector3(0, 3, 0));
+            locations.Add(new Vector3(3, 0, 0));
+
 
             AddComponent(new BasicEffectModel(asset));
-            AddComponent(new WaypointFollowScript(new List<Vector3>(locations)));
-
+            if (asset == "cube")
+            {
+                AddComponent(new RotateObject(new Vector3(25, 25, 25)));
+                AddComponent(new WaypointFollowScript(locations));
+          
+               // AddComponent(new BobbingObject(10));
+            }
+           
+           
             base.Initialize();
         }
     }

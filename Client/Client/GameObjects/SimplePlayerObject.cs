@@ -22,12 +22,7 @@ namespace Client.GameObjects
         public override void Initialize()
         {
             AddComponent(new FixedCamera(new Vector3(0, 0, -1)));
-
-            AddComponent(new PlayerMovementController(10));
-            
-            
-            AddComponent(new RotateObject(new Vector3(0, 10, 0)));
-            AddComponent(new BobbingObject(10));
+            AddComponent(new PlayerMovementController(10));         
             
             base.Initialize();
         }

@@ -21,7 +21,11 @@ namespace Client.Scripts
 
         public override void Update()
         {
-                        
+            var translation = Owner.Location;
+            // Change axis to local axis by subtracting the location
+            Owner.World *= Matrix.CreateTranslation(-translation);     
+            
+            // rotate on all axis's
             Owner.World *= Matrix.CreateRotationX(MathHelper.
                                                   ToRadians(RotationToBeApplied.X 
                                                    * GameUtilities.DeltaTime));
@@ -31,8 +35,12 @@ namespace Client.Scripts
             Owner.World *= Matrix.CreateRotationZ(MathHelper.
                                                   ToRadians(RotationToBeApplied.Z 
                                                   * GameUtilities.DeltaTime));
-            
-            
+
+            // reset the location back 
+            Owner.World *= Matrix.CreateTranslation(translation);
+
+
+
         }
     }
 }
