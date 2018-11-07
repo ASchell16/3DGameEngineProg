@@ -14,9 +14,9 @@ namespace Client.GameObjects
     public class SimplePlayerObject : GameObject
     {
         private string asset;
-        public SimplePlayerObject(string asset, Vector3 location) : base(location)
+        public SimplePlayerObject(Vector3 location) : base(location)
         {
-            this.asset = asset;
+
         }
 
         public override void Initialize()

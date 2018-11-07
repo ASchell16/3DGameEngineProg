@@ -12,7 +12,7 @@ namespace Client.Scripts
     public class WaypointFollowScript : ScriptComponent
     {
         public List<Vector3> Waypoints = new List<Vector3>();
-        public int index= 0;
+        public int index = 0;
         public float Move = .5f;
         public bool AtLocation = false;
 
@@ -25,23 +25,20 @@ namespace Client.Scripts
         public override void Update()
         {
 
-            for (int i = 0; i < Waypoints.Count; i++)
-            {
-                Owner.World = Matrix.CreateTranslation(Waypoints[index].X,
-                                                       Waypoints[index].Y,
-                                                       Waypoints[index].Z);
-                if(index < Waypoints.Count )
-                    index++;
-                if (index > 2)
-                    index = 0;
-               
-              
-            }
-            
+        //    for (int i = 0; i < Waypoints.Count; i++)
+        //    {
+        //        Owner.World = Matrix.CreateTranslation(Waypoints[index].X,
+        //                                               Waypoints[index].Y,
+        //                                               Waypoints[index].Z);
+        //        if(index < Waypoints.Count )
+        //            index++;             
+        //    }
 
-            
-         
-                        
+        //    if (index >= 2)
+        //        index = 0;
+
+
+
 
             base.Update();
         }

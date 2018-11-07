@@ -9,11 +9,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+/*_____________________________________________________________________
+    Collision Component
 
+ */
 namespace Client.Scripts
 {
     public class DebugComponent: Component
     {
+       
         public BoundingBox AABB;
         public BoundingSphere AABS;
 
