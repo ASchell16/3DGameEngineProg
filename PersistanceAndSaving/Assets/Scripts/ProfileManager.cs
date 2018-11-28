@@ -29,7 +29,6 @@ public class ProfileManager : MonoBehaviour
                 txtUsername.onValueChanged.AddListener(ValidateTextBox);
                 txtUsername.onEndEdit.AddListener(OnUsernameEntered);
                 btnCreate.onClick.AddListener(CreateProfile);
-                btnLoad.onClick.AddListener(LoadProfile<T>(username));
             }
         }
         else
@@ -56,28 +55,7 @@ public class ProfileManager : MonoBehaviour
             instance.LoadScene("MainMenu");
         }
     }
-    public void LoadProfile(string profile)
-    {
-        if (File.Exists(profile))
-        {
+   
 
-        }
-    }
-
-    public T Load<T>(string path)
-    {
-        if (File.Exists(path))
-        {
-            using (StreamReader sr = new StreamReader(path))
-            {
-                string json = sr.ReadToEnd();
-                return JsonUtility.FromJson<T>(json);
-            }
-        }
-        else
-        {
-            return default(T);
-        }
-    }
-
+   
 }

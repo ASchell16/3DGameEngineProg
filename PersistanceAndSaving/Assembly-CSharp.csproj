@@ -62,10 +62,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CharacterStats.cs" />
+    <Compile Include="Assets\Scripts\ChestContainer.cs" />
+    <Compile Include="Assets\Scripts\Container.cs" />
+    <Compile Include="Assets\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\Scripts\GameInstance.cs" />
+    <Compile Include="Assets\Scripts\InventoryController.cs" />
     <Compile Include="Assets\Scripts\InventoryItem.cs" />
+    <Compile Include="Assets\Scripts\InventoryScreen.cs" />
+    <Compile Include="Assets\Scripts\Listbutton.cs" />
     <Compile Include="Assets\Scripts\LoadableProfiles.cs" />
     <Compile Include="Assets\Scripts\MainMenuController.cs" />
+    <Compile Include="Assets\Scripts\PlayerSelectionController.cs" />
     <Compile Include="Assets\Scripts\Profile.cs" />
     <Compile Include="Assets\Scripts\ProfileManager.cs" />
     <Reference Include="UnityEditor.StandardEvents">

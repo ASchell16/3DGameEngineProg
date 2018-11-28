@@ -13,5 +13,23 @@ public class InventoryItem
     public float value;
     public float weight;
     public int Quantity;
-   
+    public ItemRarity Rarity;
+}
+
+public enum ItemRarity
+{
+    Common,
+    Rare,
+    Exotic,
+    Legendary
+}
+
+[Serializable]
+public class InventoryList
+{
+    public List<InventoryItem> Items;
+    public InventoryList()
+    {
+        Items = new List<InventoryItem>();
+    }
 }
