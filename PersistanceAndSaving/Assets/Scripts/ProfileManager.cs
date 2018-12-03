@@ -10,6 +10,7 @@ public class ProfileManager : MonoBehaviour
     public InputField txtUsername;
     public Button btnCreate;
     public Button btnLoad;
+    public Button btnPlay;
     private string username;
 
     void Start()
@@ -29,6 +30,7 @@ public class ProfileManager : MonoBehaviour
                 txtUsername.onValueChanged.AddListener(ValidateTextBox);
                 txtUsername.onEndEdit.AddListener(OnUsernameEntered);
                 btnCreate.onClick.AddListener(CreateProfile);
+                btnPlay.onClick.AddListener(Play);
             }
         }
         else
@@ -55,7 +57,11 @@ public class ProfileManager : MonoBehaviour
             instance.LoadScene("MainMenu");
         }
     }
-   
+
+    private void Play()
+    {
+        instance.LoadScene("Game");
+    }
 
    
 }

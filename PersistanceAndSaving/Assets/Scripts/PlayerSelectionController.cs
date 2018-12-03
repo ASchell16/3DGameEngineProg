@@ -18,6 +18,7 @@ public class PlayerSelectionController : MonoBehaviour
                            out hitResult,
                            maxInteractionDistance))
         {
+           
             if (hitResult.collider.gameObject.tag != "Untagged")
             {
                 SelectedObject = hitResult.collider.gameObject;
